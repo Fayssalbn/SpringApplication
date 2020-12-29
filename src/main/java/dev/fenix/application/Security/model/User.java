@@ -1,6 +1,9 @@
-package dev.fenix.application.Security.models;
+package dev.fenix.application.Security.model;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "users")
@@ -12,6 +15,19 @@ public class User {
     private String password;
     private boolean active;
     private String roles;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "modify_date")
+    private Date modifyDate;
+
+
+
 
     public int getId() {
         return id;

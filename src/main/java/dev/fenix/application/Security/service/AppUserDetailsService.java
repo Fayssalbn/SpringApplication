@@ -1,8 +1,9 @@
-package dev.fenix.application.Security;
+package dev.fenix.application.Security.service;
 
 
-import dev.fenix.application.Security.models.AppUserDetails;
-import dev.fenix.application.Security.models.User;
+import dev.fenix.application.Security.UserRepository;
+import dev.fenix.application.Security.model.AppUserDetails;
+import dev.fenix.application.Security.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,10 +18,19 @@ public class AppUserDetailsService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
 
+
+
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByUserName(userName);
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + userName));
         return user.map(AppUserDetails::new).get();
     }
+
+
+
+
+
+
+
 }
