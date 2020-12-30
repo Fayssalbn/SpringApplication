@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: myheader">
+
+</head>
+<body>
+<div th:insert="fragments/navigation :: nav"></div>
+<div class="row mt-5 ">
+    <div class="card card shadow-sm col-12">
+        <div class="card-body m-1">
+            <div th:switch="${users}">
+                <h2 th:case="null">No users yet!</h2>
+                <div th:case="*">
+
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Date Add</th>
+                            <th>Date Edit</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.name}"></td>
+                            <td th:text="${user.email}"></td>
+                            <td th:text="${user.createDate}"></td>
+                            <td th:text="${user.modifyDate}"></td>
+                            <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+                            <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+
+<p><a href="/security/adduser">Add a new user</a></p>
+</div>
+<div th:insert="fragments/footer :: foot"></div>
+</body>
+</html>

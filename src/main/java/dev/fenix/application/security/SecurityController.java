@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Map;
 
 @Controller
-@RequestMapping("security")
+///@RequestMapping("security")
 public class SecurityController {
     @Value("${message}")
     private String message;

@@ -1,8 +1,9 @@
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <body>
 <div id="navigation" th:fragment="nav">
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top">
         <a class="navbar-brand mb-0 h1 font-weight-bold text-uppercase" th:utext="${data.getAuth().getName()}">..!..</a>
+
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +15,7 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#" th:href="@{/security/signup}">adduser</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -33,7 +34,9 @@
             <span class="navbar-text">
                  <a th:if="!${data.isAuth()}" href="/login">login</a>
                  <a th:if="${data.isAuth()}" href="#" th:href="@{/logout}">Log Out</a>
+
               </span>
+
 
         </div>
     </nav>

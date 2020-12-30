@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: myheader">
+
+</head>
+<body>
+<div th:insert="fragments/navigation :: nav"></div>
+<div class="container-fluid shadow bg-white">
+    <div class="row">
+        <div class="col mt-5">
+            <form action="#" th:action="@{/security/adduser}" th:object="${user}" method="post">
+
+                <div class="form-group  col-sm-12 col-md-3">
+                    <label for="name">Name</label>
+                    <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="Name">
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                </div>
+
+                <div class="form-group   col-sm-12 col-md-3">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="text" th:field="*{email}" id="email" placeholder="Email">
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                </div>
+                <div class="form-group  col-sm-12 col-md-3">
+                    <label for="userName">userName</label>
+                    <input class="form-control" type="text" th:field="*{userName}" id="userName" placeholder="userName">
+                    <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
+                </div>
+                <div class="form-group  col-sm-12 col-md-3">
+                    <label for="password">password</label>
+                    <input class="form-control" type="password" th:field="*{userpassword}" id="password"
+                           placeholder="password">
+                    <span th:if="${#fields.hasErrors('userpassword')}" th:errors="*{userpassword}"></span>
+                </div>
+                <div class="form-group  col-sm-12 col-md-3">
+                    <label for="roles">roles</label>
+                    <input class="form-control" type="text" th:field="*{roles}" id="roles" placeholder="roles">
+                    <span th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></span>
+                </div>
+
+
+                <input class="btn btn-primary" type="submit" value="Add User">
+
+            </form>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/footer :: foot"></div>
+</body>
+</html>
