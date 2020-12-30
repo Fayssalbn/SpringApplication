@@ -1,10 +1,10 @@
-package dev.fenix.application.Security.model;
+package dev.fenix.application.security.model;
 
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "person")
+@Table(name = "resume__person")
 
 public class Person {
     @Id

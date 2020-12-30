@@ -1,4 +1,4 @@
-package dev.fenix.application;
+package dev.fenix.application.security;
 
 
 import org.springframework.beans.factory.annotation.Value;

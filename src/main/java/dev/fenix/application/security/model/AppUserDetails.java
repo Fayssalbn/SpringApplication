@@ -1,4 +1,4 @@
-package dev.fenix.application.Security.model;
+package dev.fenix.application.security.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

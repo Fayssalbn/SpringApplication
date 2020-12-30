@@ -1,7 +1,7 @@
-package dev.fenix.application.Security;
+package dev.fenix.application.security.repository;
 
 
-import dev.fenix.application.Security.model.User;
+import dev.fenix.application.security.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

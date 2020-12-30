@@ -1,6 +1,6 @@
-package dev.fenix.application.Security.service;
+package dev.fenix.application.security.service;
 
-import dev.fenix.application.Security.model.Person;
+import dev.fenix.application.security.model.Person;
 import org.springframework.stereotype.Service;
 
 import java.util.Hashtable;

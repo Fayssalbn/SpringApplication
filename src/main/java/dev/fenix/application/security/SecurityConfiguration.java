@@ -1,4 +1,4 @@
-package dev.fenix.application.Security;
+package dev.fenix.application.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -31,16 +32,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/").permitAll()
+                .antMatchers("/login").permitAll()
                 .and().formLogin().defaultSuccessUrl("/", true);
        /// TODO https://www.baeldung.com/spring-security-manual-logout
-        http.logout(logout -> logout
-                .logoutUrl("/logout")
-                .addLogoutHandler(new SecurityContextLogoutHandler())
-        );
+        http.logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/index/index");
         http.sessionManagement()
-                .invalidSessionUrl("/invalidSession.html")
+                .invalidSessionUrl("/")
                 .maximumSessions(1).sessionRegistry(sessionRegistry()).and()
                 .sessionFixation().none();
+        http.formLogin()
+                .loginPage("/login");
     }
 
     @Bean
