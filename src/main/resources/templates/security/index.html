@@ -5,9 +5,9 @@
 </head>
 <body>
 <div th:insert="fragments/navigation :: nav"></div>
-<div class="row mt-5 ">
-    <div class="card card shadow-sm col-12">
-        <div class="card-body m-1">
+<div class="row  ">
+    <div class="card card shadow-sm col-12 ">
+        <div class="card-body m-1 mt-5">
             <div th:switch="${users}">
                 <h2 th:case="null">No users yet!</h2>
                 <div th:case="*">
@@ -29,7 +29,7 @@
                             <td th:text="${user.email}"></td>
                             <td th:text="${user.createDate}"></td>
                             <td th:text="${user.modifyDate}"></td>
-                            <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+                            <td><a th:href="@{/security/edit/{id}(id=${user.id})}">Edit</a></td>
                             <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
                         </tr>
                         </tbody>

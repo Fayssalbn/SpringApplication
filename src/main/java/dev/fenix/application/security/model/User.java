@@ -20,10 +20,10 @@ public class User {
     private int id;
 
     @NotBlank(message = "Name is mandatory")
-    @Size(min = 2, max = 12, message = "message size must be between 2 and 12")
+    @Size(min = 4, max = 12, message = "message size must be between 2 and 12")
     private String userName;
 
-    @NotBlank(message = "Name is mandatory")
+   // @NotBlank(message = "userpassword is mandatory")
     @Pattern(message="Minimum eight characters, at least one letter and one number", regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")
     @Size(min = 6, max = 20, message = "message size must be between 6 and 20")
     @Transient
@@ -33,13 +33,13 @@ public class User {
 
 
     private boolean active;
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "roles is mandatory")
     private String roles;
 
     @NotBlank(message = "Name is mandatory")
     private String name;
 
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "email is mandatory")
     @Email(message = "Not email")
     private String email;
 
