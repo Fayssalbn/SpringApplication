@@ -1,6 +1,9 @@
 package dev.fenix.application.security.model;
+import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -20,7 +23,10 @@ public class User {
     private int id;
 
     @NotBlank(message = "Name is mandatory")
-    @Size(min = 4, max = 12, message = "message size must be between 2 and 12")
+    //@Size(min = 4, max = 120, message = "message size must be between 2 and 12")
+    @Type(type="text")
+    @Column(name="user_name")
+    @ColumnTransformer(forColumn="user_name", read="LOWER(user_name)", write="LOWER(?)")
     private String userName;
 
    // @NotBlank(message = "userpassword is mandatory")
@@ -37,24 +43,34 @@ public class User {
     private String roles;
 
     @NotBlank(message = "Name is mandatory")
+    @Column(name="name")
+    @ColumnTransformer(forColumn="name", read="LOWER(name)", write="LOWER(?)")
     private String name;
 
     @NotBlank(message = "email is mandatory")
     @Email(message = "Not email")
     private String email;
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
+
     @Column(name = "create_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
 
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "modify_date")
     private Date modifyDate;
 
 
 
+
+    @PrePersist
+    protected void onCreate() {
+        createDate = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        modifyDate = new Date();
+    }
 
     public int getId() {
         return id;
@@ -114,6 +130,7 @@ public class User {
         return name;
     }
 
+
     public void setName(String name) {
         this.name = name;
     }
@@ -129,13 +146,12 @@ public class User {
     public Date getCreateDate() {
         return createDate;
     }
+    public Date getModifyDate() {
+        return modifyDate;
+    }
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
-    }
-
-    public Date getModifyDate() {
-        return modifyDate;
     }
 
     public void setModifyDate(Date modifyDate) {

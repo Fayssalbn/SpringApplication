@@ -33,5 +33,4 @@ public class Technologie {
     @ManyToMany(mappedBy = "technologies")
     private Set<Item> employees = new HashSet<>();
 
-
 }

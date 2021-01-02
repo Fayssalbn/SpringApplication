@@ -3,18 +3,12 @@
 <div id="navigation" th:fragment="nav">
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top">
         <a class="navbar-brand mb-0 h1 font-weight-bold text-uppercase" th:utext="${data.getAuth().getName()}">..!..</a>
-
-
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,18 +17,13 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#" th:href="@{/security/signup}">adduser</a>
                         <a class="dropdown-item" href="#" th:href="@{/security/index}">all Users</a>
-
                     </div>
                 </li>
-
             </ul>
             <span class="navbar-text">
                  <a th:if="!${data.isAuth()}" href="/login">login</a>
                  <a th:if="${data.isAuth()}" href="#" th:href="@{/logout}">Log Out</a>
-
-              </span>
-
-
+            </span>
         </div>
     </nav>
 </div>
