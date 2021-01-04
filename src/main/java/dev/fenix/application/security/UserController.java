@@ -22,7 +22,7 @@ public class UserController {
 
       @GetMapping("/index")
       public String showUserList(Model model) {
-        log.info('')
+
           TemplateData data = new TemplateData();
           model.addAttribute("data", data);
           model.addAttribute("users", userRepository.findAll());
