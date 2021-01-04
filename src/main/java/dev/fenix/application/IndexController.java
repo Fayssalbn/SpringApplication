@@ -49,41 +49,6 @@ public class IndexController {
 
 }
 
-    /*@RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginPage(@RequestParam(value = "error", required = false) String error,
-                            @RequestParam(value = "logout", required = false) String logout,
-                            Model model) {
-        String errorMessge = null;
-        if(error != null) {
-            errorMessge = "Username or Password is incorrect !!";
-        }
-        if(logout != null) {
-            errorMessge = "You have been successfully logged out !!";
-        }
-        model.addAttribute("errorMessge", errorMessge);
-        return "login";
-    }*/
-
-
-
-
-    /*@RequestMapping("{id}")
-    public String getPerson(Model model, @PathVariable("id") String id) {
-        Person p =  ps.getPerson(id);
-        model.addAttribute("person", p);
-        return "personview";
-    }
-
-
-
-    @RequestMapping("addformsave")
-    public String getPerson(Model model,Person p) {
-        System.out.println("Updated first name is "+p.getFirstName());
-        System.out.println("Updated last name is "+p.getLastName());
-        return "personview";
-    }
-*/
-
 
 
 

@@ -3,6 +3,7 @@ package dev.fenix.application.security;
 import dev.fenix.application.security.model.User;
 import dev.fenix.application.security.repository.UserRepository;
 import dev.fenix.application.template.TemplateData;
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +19,10 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-      /// TODO
-     //// LINK https://www.baeldung.com/spring-boot-crud-thymeleaf
-     /// index
+
       @GetMapping("/index")
       public String showUserList(Model model) {
+        log.info('')
           TemplateData data = new TemplateData();
           model.addAttribute("data", data);
           model.addAttribute("users", userRepository.findAll());
