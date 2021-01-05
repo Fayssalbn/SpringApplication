@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IconRepository extends JpaRepository<Icon,Integer> {
     Icon getIconById(Integer id);
-    Icon getIconByTitle(String title);
-    Icon saveIcon(Icon b);
-    void deleteIcon(Icon b);
+    Icon getIconByName(String title);
+    Icon save(Icon b);
+    void delete(Icon b);
 }

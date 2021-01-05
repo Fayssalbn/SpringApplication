@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: myheader">
+
+</head>
+<body>
+<div th:insert="fragments/navigation :: nav"></div>
+<div class="container-fluid shadow bg-white">
+    <div class="row">
+        <div class="col mt-5">
+            <form action="#" th:action="@{/resume/icon/update/{id}(id=${icon.id})}" th:object="${icon}" method="post">
+                <div class="form-group  col-sm-12 col-md-3">
+                    <label for="name">Name</label>
+                    <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="Name">
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                </div>
+
+
+                <div class="form-group   col-sm-12 col-md-3">
+                    <label for="color">Color</label>
+                    <input class="form-control" type="text" th:field="*{color}" id="color" placeholder="color">
+                    <span th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></span>
+                </div>
+                <div class="form-group   col-sm-12 col-md-3">
+                    <label for="size">size</label>
+                    <input class="form-control" type="text" th:field="*{size}" id="size" placeholder="size">
+                    <span th:if="${#fields.hasErrors('size')}" th:errors="*{size}"></span>
+                </div>
+
+
+
+                <input  class="btn btn-primary" type="submit" value="Update User">
+            </form>
+
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/footer :: foot"></div>
+</body>
+</html>

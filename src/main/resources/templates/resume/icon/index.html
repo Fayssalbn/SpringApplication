@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: myheader">
+
+</head>
+<body>
+<div th:insert="fragments/navigation :: nav"></div>
+<div class="row  ">
+    <div class="card card shadow-sm col-12 ">
+        <div class="card-body m-1 mt-5">
+            <div th:switch="${icons}">
+                <h2 th:case="null">No icons yet!</h2>
+                <div th:case="*">
+
+                    <table class="table table-striped table-sm">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Color</th>
+                            <th>Size</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="icon : ${icons}">
+                            <td th:text="${icon.name}"></td>
+                            <td th:text="${icon.color}"></td>
+                            <td th:text="${icon.size}"></td>
+                            <td><a th:href="@{/resume/icon/edit/{id}(id=${icon.id})}">Edit</a></td>
+                            <td><a th:href="@{/resume/icon/delete/{id}(id=${icon.id})}">Delete</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/footer :: foot"></div>
+</body>
+</html>

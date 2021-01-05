@@ -1,9 +1,9 @@
 package dev.fenix.application.security.service;
 
 
-import dev.fenix.application.security.repository.UserRepository;
 import dev.fenix.application.security.model.AppUserDetails;
 import dev.fenix.application.security.model.User;
+import dev.fenix.application.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
