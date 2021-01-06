@@ -39,6 +39,18 @@
                 </div>
 
 
+                <div class="form-group  col-sm-12 col-md-3">
+                    <label for="roles">roles</label>
+                    <hr>
+                        <span class="col-sm-12 col-md-3" th:each="role : ${roles}">
+                            <input th:field="*{roles}" type="checkbox" name="roles" th:value="${role}"/>
+                            <label th:text="${role}"></label>
+                            <span th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></span>
+
+                        </span >
+
+                </div>
+
                 <input class="btn btn-primary" type="submit" value="Add User">
 
             </form>
