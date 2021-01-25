@@ -15,6 +15,7 @@
                     <table class="table table-striped table-sm">
                         <thead>
                         <tr>
+                            <th>icon</th>
                             <th>Name</th>
                             <th>Color</th>
                             <th>Size</th>
@@ -24,7 +25,12 @@
                         </thead>
                         <tbody>
                         <tr th:each="icon : ${icons}">
-                            <td th:text="${icon.name}"></td>
+                            <td>
+                                <i class="fas" th:classappend="${'fa-' + icon.name + ' ' + icon.size }" th:style="|color: ${icon.color};|"></i>
+                            </td>
+                            <td th:text="${icon.name}">
+                                <i class="fas " th:classappend="${icon.name}"></i>
+                            </td>
                             <td th:text="${icon.color}"></td>
                             <td th:text="${icon.size}"></td>
                             <td><a th:href="@{/resume/icon/edit/{id}(id=${icon.id})}">Edit</a></td>
