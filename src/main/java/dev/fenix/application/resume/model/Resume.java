@@ -17,8 +17,8 @@ public class Resume {
 
 
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY)
-
     private List<Item> items;
+
 
 
 }

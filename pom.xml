@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>dev.fenix</groupId>
 	<artifactId>application</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>application</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Resume Application</description>
 
 	<properties>
 		<java.version>15</java.version>
@@ -81,6 +81,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>resume_${version}</finalName>
 	</build>
 
 </project>

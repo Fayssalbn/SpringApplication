@@ -18,12 +18,12 @@
 
                 <div class="form-group   col-sm-12 col-md-3">
                     <label for="color">Color</label>
-                    <input class="form-control" type="text" th:field="*{color}" id="color" placeholder="color">
+                    <input class="form-control" type="color" th:field="*{color}" id="color" placeholder="color">
                     <span th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></span>
                 </div>
                 <div class="form-group   col-sm-12 col-md-3">
                     <label for="size">size</label>
-                    <input class="form-control" type="text" th:field="*{size}" id="size" placeholder="size">
+                    <input class="form-control" type="number" th:field="*{size}" id="size" placeholder="size">
                     <span th:if="${#fields.hasErrors('size')}" th:errors="*{size}"></span>
                 </div>
 
