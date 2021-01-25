@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("security")
@@ -35,12 +37,20 @@ public class UserController {
     public String showSignUpForm(User user ,Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
+        List<String> roles = new ArrayList<>();
+        roles.add("ROLE_ADMIN");
+        roles.add("ROLE_USER");
+
+        model.addAttribute("roles", roles);
         return "security/add-user";
     }
     @PostMapping("/adduser")
     public String addUser(@Valid User user, BindingResult result, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
+
+
+
 
         if (result.hasErrors()) {
             return "security/add-user";
