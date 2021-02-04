@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: myheader">
+
+</head>
+<body>
+<div th:insert="fragments/navigation :: nav"></div>
+<div class="row  ">
+    <div class="card card shadow-sm col-12 ">
+        <div class="card-body m-1 mt-5">
+            <div th:switch="${technologies}">
+                <h2 th:case="null">No Technologie yet!</h2>
+                <div th:case="*">
+
+                    <table class="table table-striped table-sm">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>name</th>
+                            <th>logo</th>
+                            <th>url</th>
+                            <th>description</th>
+                            <th>levels</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="technologie : ${technologies}">
+                            <td th:text="${technologie.id}"></td>
+                            <td th:text="${technologie.name}"></td>
+                            <td th:text="${technologie.logo}"></td>
+                            <td th:text="${technologie.url}"></td>
+                            <td th:text="${technologie.description}"></td>
+                            <td th:text="${technologie.levels}"></td>
+                            <td><a th:href="@{/resume/technologie/edit/{id}(id=${technologie.id})}">Edit</a></td>
+                            <td><a th:href="@{/resume/technologie/delete/{id}(id=${technologie.id})}">Delete</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/footer :: foot"></div>
+</body>
+</html>

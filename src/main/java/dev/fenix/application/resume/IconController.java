@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(   "/resume/icon"   )
+@RequestMapping("/resume/icon")
 public class IconController {
 
 
@@ -27,17 +27,17 @@ public class IconController {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
         model.addAttribute("icons", iconRepository.findAll());
-        System.out.println(iconRepository.findAll().size());
         return "resume/icon/index";
     }
 
     // add user
     @GetMapping("/add")
-    public String showAddForm(Icon icon , Model model) {
+    public String showAddForm(Icon icon, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
         return "resume/icon/add-icon";
     }
+
     @PostMapping("/addicon")
     public String addIcon(@Valid Icon icon, BindingResult result, Model model) {
         TemplateData data = new TemplateData();
@@ -52,11 +52,9 @@ public class IconController {
     }
 
 
-
-
     // edit user
     @GetMapping("/edit/{id}")
-    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
         Icon icon = iconRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid icon Id:" + id));
@@ -66,7 +64,7 @@ public class IconController {
 
 
     @PostMapping("/update/{id}")
-    public String updateIcon( @PathVariable("id") int id ,@Valid Icon icon, BindingResult result, Model model) {
+    public String updateIcon(@PathVariable("id") Long id, @Valid Icon icon, BindingResult result, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
         if (result.hasErrors()) {
@@ -82,7 +80,7 @@ public class IconController {
 
     /// delete
     @GetMapping("/delete/{id}")
-    public String deleteIcon(@PathVariable("id") int id, Model model) {
+    public String deleteIcon(@PathVariable("id") Long id, Model model) {
         Icon icon = iconRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         iconRepository.delete(icon);
         return "redirect:resume/icon/index";

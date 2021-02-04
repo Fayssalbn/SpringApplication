@@ -1,22 +1,26 @@
 package dev.fenix.application.resume.model;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "resume__icon")
 public class Icon {
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+
+
     private String name;
     private String color;
     private String size;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
