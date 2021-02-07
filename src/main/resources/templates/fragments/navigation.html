@@ -16,8 +16,8 @@
                         Security
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#" th:href="@{/security/signup}">adduser</a>
-                        <a class="dropdown-item" href="#" th:href="@{/security/index}">all Users</a>
+                        <a class="dropdown-item" sec:authorize-url="/security/signup" href="#" th:href="@{/security/signup}">adduser</a>
+                        <a class="dropdown-item" sec:authorize-url="/security/index" href="#" th:href="@{/security/index}">all Users</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

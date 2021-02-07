@@ -33,6 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .and().formLogin().defaultSuccessUrl("/", true);
+
        /// TODO https://www.baeldung.com/spring-security-manual-logout
         http.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

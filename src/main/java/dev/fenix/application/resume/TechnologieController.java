@@ -1,6 +1,6 @@
 package dev.fenix.application.resume;
 
-import dev.fenix.application.FileUpload;
+import dev.fenix.application.services.FileUpload;
 import dev.fenix.application.resume.model.Technologie;
 import dev.fenix.application.resume.repository.TechnologieRepository;
 import dev.fenix.application.template.TemplateData;
@@ -53,7 +53,7 @@ public class TechnologieController {
         technologie.setLogo(fileName);
         technologieRepository.save(technologie);
         String uploadDir = "data/technologie-logos/" + technologie.getId();
-        System.out.println(fileName);
+
 
         try {
             FileUpload.saveFile(uploadDir, fileName, file);
@@ -71,19 +71,28 @@ public class TechnologieController {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
         Technologie technologie = technologieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid icon Id:" + id));
-        model.addAttribute("icon", technologie);
-        return "/resume/technologie/update-icon";
+        model.addAttribute("technologie", technologie);
+        return "/resume/technologie/update-technologie";
     }
 
 
     @PostMapping("/update/{id}")
-    public String updateTechnologie(@PathVariable("id") Long id, @Valid Technologie technologie, BindingResult result, Model model) {
+    public String updateTechnologie(@PathVariable("id") Long id, @Valid Technologie technologie, BindingResult result, Model model ,  @RequestPart("file") MultipartFile file) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
         if (result.hasErrors()) {
             technologie.setId(id);
-
             return "/resume/technologie/update-technologie";
+        }
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        technologie.setLogo(fileName);
+        technologieRepository.save(technologie);
+        String uploadDir = "data/technologie-logos/" + technologie.getId();
+
+        try {
+            FileUpload.saveFile(uploadDir, fileName, file);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         technologieRepository.save(technologie);

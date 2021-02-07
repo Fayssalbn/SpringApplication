@@ -4,9 +4,12 @@ package dev.fenix.application.resume.model;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.annotations.Type;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -15,12 +18,20 @@ public class Technologie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
+    @NotBlank(message = "Name is mandatory")
+    @Size(min = 4, max = 256, message = "message size must be between 2 and 12")
+    @Type(type="text")
     private String name;
     private String logo;
     private String url;
+    @NotBlank(message = "Name is mandatory")
+    @Size(min = 4, max = 256, message = "message size must be between 2 and 12")
+    @Type(type="text")
     private String description;
+
+    @NotBlank(message = "Name is mandatory")
     private Integer levels;
 
 
