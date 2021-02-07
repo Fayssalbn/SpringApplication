@@ -25,14 +25,14 @@
                     <label for="size">size</label>
                     <label for="size">size</label>
                     <select th:field="*{size}" class="form-control"   id="size" placeholder="size" >
-                        <option th:value="'fa-xs'" th:text="fa-xs"></option>
-                        <option th:value="'fa-sm'" th:text="fa-sm"></option>
-                        <option th:value="'fa-lg'" th:text="fa-lg"></option>
-                        <option th:value="'fa-2x'" th:text="fa-2x"></option>
-                        <option th:value="'fa-3x'" th:text="fa-3x"></option>
-                        <option th:value="'fa-5x'" th:text="fa-5x"></option>
-                        <option th:value="'fa-7x'" th:text="fa-7x"></option>
-                        <option th:value="'fa-10x'" th:text="fa-10x"></option>
+                        <option th:selected="${size} == 'fa-xs' ? true : false"  th:value="'fa-xs'" th:text="fa-xs"></option>
+                        <option th:selected="${size} == 'fa-sm' ? true : false" th:value="'fa-sm'" th:text="fa-sm"></option>
+                        <option th:selected="${size} == 'fa-lg' ? true : false" th:value="'fa-lg'" th:text="fa-lg"></option>
+                        <option th:selected="${size} == 'fa-2x' ? true : false" th:value="'fa-2x'" th:text="fa-2x"></option>
+                        <option th:selected="${size} == 'fa-3x' ? true : false" th:value="'fa-3x'" th:text="fa-3x"></option>
+                        <option th:selected="${size} == 'fa-5x' ? true : false" th:value="'fa-5x'" th:text="fa-5x"></option>
+                        <option th:selected="${size} == 'fa-7x' ? true : false" th:value="'fa-7x'" th:text="fa-7x"></option>
+                        <option th:selected="${size} == 'fa-10x' ? true : false" th:value="'fa-10x'" th:text="fa-10x"></option>
                     </select>
                     <span th:if="${#fields.hasErrors('size')}" th:errors="*{size}"></span>
                 </div>

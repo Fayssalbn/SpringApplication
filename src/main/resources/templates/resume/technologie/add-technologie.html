@@ -8,33 +8,35 @@
 <div class="container-fluid shadow bg-white">
     <div class="row">
         <div class="col mt-5">
-            <form action="#" th:action="@{/resume/icon/addicon}" th:object="${icon}" method="post">
+            <form action="#" th:action="@{/resume/technologie/addtechnologie}" th:object="${technologie}"  enctype="multipart/form-data" method="post">
 
                 <div class="form-group  col-sm-12 col-md-3">
                     <label for="name">Name</label>
                     <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="Name">
                     <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
                 </div>
-
-                <div class="form-group   col-sm-12 col-md-3">
-                    <label for="color">Color</label>
-                    <input class="form-control" type="color" th:field="*{color}" id="color" placeholder="color">
-                    <span th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></span>
+                <div class="form-group  col-sm-12 col-md-3">
+                    <label for="url">Url</label>
+                    <input class="form-control" type="text" th:field="*{url}" id="url" placeholder="url">
+                    <span th:if="${#fields.hasErrors('url')}" th:errors="*{url}"></span>
                 </div>
-                <div class="form-group   col-sm-12 col-md-3">
-                    <label for="size">size</label>
-                    <select th:field="*{size}" class="form-control"   id="size" placeholder="size" >
-                        <option th:value="'fa-xs'" th:text="fa-xs"></option>
-                        <option th:value="'fa-sm'" th:text="fa-sm"></option>
-                        <option th:value="'fa-lg'" th:text="fa-lg"></option>
-                        <option th:value="'fa-2x'" th:text="fa-2x"></option>
-                        <option th:value="'fa-3x'" th:text="fa-3x"></option>
-                        <option th:value="'fa-5x'" th:text="fa-5x"></option>
-                        <option th:value="'fa-7x'" th:text="fa-7x"></option>
-                        <option th:value="'fa-10x'" th:text="fa-10x"></option>
-                    </select>
+                <div class="form-group  col-sm-12 col-md-3">
+                    <label for="description">Description</label>
+                    <input class="form-control" type="textarea" th:field="*{description}" id="description"
+                           placeholder="description">
+                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+                </div>
+                <div class="form-group  col-sm-12 col-md-3">
+                    <label for="description">levels</label>
+                    <input class="form-control" type="number" max="10" min="1" value="5" th:field="*{levels}"
+                           id="levels" placeholder="levels">
+                    <span th:if="${#fields.hasErrors('levels')}" th:errors="*{levels}"></span>
+                </div>
 
-                    <span th:if="${#fields.hasErrors('size')}" th:errors="*{size}"></span>
+                <div class="form-group  col-sm-12 col-md-3">
+                    <label for="file">Photos: </label>
+                    <input type="file" th:field="*{file}" id="file" accept="image/png, image/jpeg" />
+                    <span th:if="${#fields.hasErrors('file')}" th:errors="*{file}"></span>
                 </div>
 
                 <input class="btn btn-primary" type="submit" value="Add">

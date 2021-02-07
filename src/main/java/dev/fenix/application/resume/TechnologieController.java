@@ -1,18 +1,19 @@
 package dev.fenix.application.resume;
 
+import dev.fenix.application.FileUpload;
 import dev.fenix.application.resume.model.Technologie;
 import dev.fenix.application.resume.repository.TechnologieRepository;
 import dev.fenix.application.template.TemplateData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/resume/technologie")
@@ -40,17 +41,27 @@ public class TechnologieController {
         return "resume/technologie/add-technologie";
     }
 
-    @PostMapping("/add")
-    public String addTechnologie(@Valid Technologie technologie, BindingResult result, Model model) {
+    @PostMapping("/addtechnologie")
+    public String addTechnologie(@Valid Technologie technologie, BindingResult result, Model model, @RequestPart("file") MultipartFile file) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
 
         if (result.hasErrors()) {
             return "resume/technologie/add-technologie";
         }
-
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        technologie.setLogo(fileName);
         technologieRepository.save(technologie);
-        return "redirect:/technologie/technologie/index";
+        String uploadDir = "data/technologie-logos/" + technologie.getId();
+        System.out.println(fileName);
+
+        try {
+            FileUpload.saveFile(uploadDir, fileName, file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/resume/technologie/index";
     }
 
 
@@ -61,7 +72,7 @@ public class TechnologieController {
         model.addAttribute("data", data);
         Technologie technologie = technologieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid icon Id:" + id));
         model.addAttribute("icon", technologie);
-        return "resume/technologie/update-icon";
+        return "/resume/technologie/update-icon";
     }
 
 
@@ -72,7 +83,7 @@ public class TechnologieController {
         if (result.hasErrors()) {
             technologie.setId(id);
 
-            return "resume/technologie/update-technologie";
+            return "/resume/technologie/update-technologie";
         }
 
         technologieRepository.save(technologie);
@@ -85,8 +96,10 @@ public class TechnologieController {
     public String deleteTechnologie(@PathVariable("id") Long id, Model model) {
         Technologie technologie = technologieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Technologie Id:" + id));
         technologieRepository.delete(technologie);
-        return "redirect:resume/technologie/index";
+        return "redirect:/resume/technologie/index";
     }
+
+
 
 
 }

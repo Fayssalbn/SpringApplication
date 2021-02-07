@@ -28,8 +28,10 @@
                         <tbody>
                         <tr th:each="technologie : ${technologies}">
                             <td th:text="${technologie.id}"></td>
-                            <td th:text="${technologie.name}"></td>
-                            <td th:text="${technologie.logo}"></td>
+                            <td th:text="${technologie.name}"> </td>
+                            <td>
+                                <img class="img-thumbnail" width="50" th:src="@{'/'+${technologie.logoImagePath}}"/>
+                            </td>
                             <td th:text="${technologie.url}"></td>
                             <td th:text="${technologie.description}"></td>
                             <td th:text="${technologie.levels}"></td>
