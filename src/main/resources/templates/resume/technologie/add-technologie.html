@@ -5,44 +5,49 @@
 </head>
 <body>
 <div th:insert="fragments/navigation :: nav"></div>
-<div class="container-fluid shadow bg-white">
-    <div class="row">
-        <div class="col mt-5">
-            <form action="#" th:action="@{/resume/technologie/addtechnologie}" th:object="${technologie}"  enctype="multipart/form-data" method="post">
+<div class="container container-fluid shadow p-5  bg-white">
 
-                <div class="form-group  col-sm-12 col-md-3">
-                    <label for="name">Name</label>
-                    <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="Name">
-                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-                </div>
-                <div class="form-group  col-sm-12 col-md-3">
-                    <label for="url">Url</label>
-                    <input class="form-control" type="text" th:field="*{url}" id="url" placeholder="url">
-                    <span th:if="${#fields.hasErrors('url')}" th:errors="*{url}"></span>
-                </div>
-                <div class="form-group  col-sm-12 col-md-3">
-                    <label for="description">Description</label>
-                    <input class="form-control" type="text" th:field="*{description}" id="description" placeholder="description">
-                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
-                </div>
-                <div class="form-group  col-sm-12 col-md-3">
-                    <label for="description">levels</label>
-                    <input class="form-control" type="number" max="10" min="1" value="5" th:field="*{levels}"
-                           id="levels" placeholder="levels">
-                    <span th:if="${#fields.hasErrors('levels')}" th:errors="*{levels}"></span>
-                </div>
 
-                <div class="form-group  col-sm-12 col-md-3">
-                    <label for="file">Photos: </label>
-                    <input type="file" th:field="*{file}" id="file" accept="image/png, image/jpeg" />
-                    <span th:if="${#fields.hasErrors('file')}" th:errors="*{file}"></span>
-                </div>
+    <form action="#" th:action="@{/resume/technologie/addtechnologie}" th:object="${technologie}"
+          enctype="multipart/form-data" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-6 ">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="Name">
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="url">Url</label>
+                <input class="form-control" type="text" th:field="*{url}" id="url" placeholder="url">
+                <span th:if="${#fields.hasErrors('url')}" th:errors="*{url}"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="description">Description</label>
+                <textarea class="form-control"  type="text" th:field="*{description}" id="description"   rows="3"></textarea>
+                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="levels">levels</label>
+                <input type="range" class="form-control-range" th:field="*{levels}" id="levels">
+                <span th:if="${#fields.hasErrors('levels')}" th:errors="*{levels}"></span>
+            </div>
 
-                <input class="btn btn-primary" type="submit" value="Add">
+            <div class="form-group col-md-6 custom-file">
+                <label class="custom-file-label" for="file">Choose Logo</label>
+                <input  class="custom-file-input"  type="file" th:field="*{file}" id="file" accept="image/png, image/jpeg"/>
+                <span th:if="${#fields.hasErrors('file')}" th:errors="*{file}"></span>
+            </div>
 
-            </form>
+
+
+
+            <div class="form-group col-md-6">
+                <input class="btn btn-primary btn" type="submit" value="Add">
+            </div>
         </div>
-    </div>
+    </form>
+
+
 </div>
 <div th:insert="fragments/footer :: foot"></div>
 </body>

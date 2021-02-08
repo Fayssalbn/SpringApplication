@@ -5,7 +5,7 @@
 </head>
 <body>
 <div th:insert="fragments/navigation :: nav"></div>
-<div class="container-fluid shadow bg-white">
+<div class="container container-fluid shadow p-5  bg-white">
     <div class="row">
         <div class="col mt-5">
             <form action="#" th:action="@{/resume/icon/update/{id}(id=${icon.id})}" th:object="${icon}" method="post">

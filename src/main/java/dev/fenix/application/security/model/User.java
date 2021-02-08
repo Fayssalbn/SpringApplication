@@ -20,6 +20,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+
     @NotBlank(message = "Name is mandatory")
     //@Size(min = 4, max = 120, message = "message size must be between 2 and 12")
     @Type(type="text")

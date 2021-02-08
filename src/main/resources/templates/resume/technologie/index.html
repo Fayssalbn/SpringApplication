@@ -6,7 +6,7 @@
 <body>
 <div th:insert="fragments/navigation :: nav"></div>
 <div class="row  ">
-    <div class="card card shadow-sm col-12 ">
+    <div class="container container-fluid shadow p-5  bg-white ">
         <div class="card-body m-1 mt-5">
             <div th:switch="${technologies}">
                 <h2 th:case="null">No Technologie yet!</h2>

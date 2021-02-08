@@ -1,7 +1,7 @@
 package dev.fenix.application.resume.model;
 
 
-import org.hibernate.annotations.GenericGenerator;
+
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -27,11 +27,9 @@ public class Technologie {
     private String logo;
     private String url;
     @NotBlank(message = "Name is mandatory")
-    @Size(min = 4, max = 256, message = "message size must be between 2 and 12")
+    @Size(min = 4, max = 256, message = "message size must be between 2 and 256")
     @Type(type="text")
     private String description;
-
-    @NotBlank(message = "Name is mandatory")
     private Integer levels;
 
 
