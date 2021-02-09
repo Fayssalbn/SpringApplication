@@ -19,7 +19,6 @@ public class TemplateData {
     }
 
     public String getAuthName() {
-
         return auth.getName();
     }
     public Boolean isAuth() {
@@ -28,12 +27,13 @@ public class TemplateData {
     }
 
     public Boolean isAllow(){
-
         Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)    SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         System.out.println(authorities);
         return true;
 
     }
+
+
 
 
 

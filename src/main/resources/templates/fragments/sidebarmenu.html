@@ -1,9 +1,9 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <body>
-<div id="sidebarMenu" th:fragment="sidebarMenu">
+<div  th:fragment="sidebarMenu">
 
 
-    <nav  class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <nav id="sidebarMenu"  class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
         <div class="sidebar-sticky pt-3">
             <ul class="nav flex-column">
                 <li class="nav-item">
@@ -12,22 +12,32 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" sec:authorize-url="/security/signup" href="#" th:href="@{/security/signup}">
-                        <span data-feather="user-plus"></span>User
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" sec:authorize-url="/security/index" href="#" th:href="@{/security/index}">
                         <span data-feather="users"></span> Users
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span data-feather="users"></span>
-                        Customers
+                    <a class="nav-link" sec:authorize-url="/resume/icon/index" href="#" th:href="@{/resume/icon/index}">
+                        <span data-feather="grid"></span> Icons
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize-url="/resume/technologie/index" href="#" th:href="@{/resume/technologie/index}">
+                        <span data-feather="cpu"></span> Technologie
+                    </a>
+                </li>
+
+                <li th:if="!${data.isAuth()}" class="nav-item">
+                    <a class="nav-link" sec:authorize-url="/security/signup" href="#" th:href="@{/security/signup}">
+                        <span data-feather="user-plus"></span> Signup
+                    </a>
+                </li>
+
+
+
+
                 <!-- https://feathericons.com/ -->
 
             </ul>

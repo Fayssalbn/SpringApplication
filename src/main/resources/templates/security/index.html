@@ -5,15 +5,19 @@
 </head>
 <body>
 <div th:insert="fragments/navigation :: nav"></div>
-<div class="row  ">
-    <div class="card card shadow-sm col-12 ">
-        <div class="card-body m-1 mt-5">
-            <div th:switch="${users}">
-                <h2 th:case="null">No users yet!</h2>
-                <div th:case="*">
+<div class="row mt-5">
+    <div th:insert="fragments/sidebarmenu :: #sidebarMenu"></div>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Users</h1>
+        </div>
+        <div th:switch="${users}">
+            <h2 th:case="null">No users yet!</h2>
+            <div th:case="*">
 
-                    <table class="table table-striped table-sm">
-                        <thead>
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm text-nowrap">
+                        <thead class="thead-dark text-uppercase font-weight-bold">
                         <tr>
                             <th>Name</th>
                             <th>userName</th>
@@ -35,16 +39,25 @@
                             <td th:text="${user.createDate}"></td>
                             <td th:text="${user.modifyDate}"></td>
                             <td th:text="${user.active}"></td>
-                            <td><a th:href="@{/security/edit/{id}(id=${user.id})}">Edit</a></td>
-                            <td><a th:href="@{/security/delete/{id}(id=${user.id})}">Delete</a></td>
+
+
+
+                            <td><a th:href="@{/security/edit/{id}(id=${user.id})}"  class="text-secondary" > <span data-feather="edit"></span> Edit</a></td>
+                            <td><a th:href="@{/security/delete/{id}(id=${user.id})}"  class="text-danger" > <span data-feather="delete"></span> Delete</a></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
         </div>
-    </div>
-</div>
+    </main>
 </div>
 <div th:insert="fragments/footer :: foot"></div>
 </body>
 </html>
+
+
+
+
+
+

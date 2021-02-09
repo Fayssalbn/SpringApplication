@@ -1,9 +1,8 @@
-<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
 <div id="navigation" th:fragment="nav">
-
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 text-uppercase" href="#" th:href="@{/}"  th:utext="${data.getAuth().getName()}" >name</a>
+    <nav class="navbar fixed-top navbar-dark   bg-dark flex-md-nowrap p-0  shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 text-uppercase" href="#" th:href="@{/}" th:utext="${data.getAuth().getName()}" >name</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -14,46 +13,6 @@
             </li>
         </ul>
     </nav>
-
-   <!--
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark   navbar-expand-lg     shadow-sm fixed-top">
-
-        <a class="navbar-brand mb-0  text-white font-weight-bold text- text-uppercase" th:utext="${data.getAuth().getName()}">..!..</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Security
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" sec:authorize-url="/security/signup" href="#" th:href="@{/security/signup}">adduser</a>
-                        <a class="dropdown-item" sec:authorize-url="/security/index" href="#" th:href="@{/security/index}">all Users</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Resume
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#" th:href="@{/resume/icon/add}">add icon</a>
-                        <a class="dropdown-item" href="#" th:href="@{/resume/icon/index}">all icons</a>
-                        <a class="dropdown-item" href="#" th:href="@{/resume/technologie/add}">add technologie</a>
-                        <a class="dropdown-item" href="#" th:href="@{/resume/technologie/index}">all technologie</a>
-                    </div>
-                </li>
-            </ul>
-            <span class="navbar-text">
-                 <a th:if="!${data.isAuth()}" href="/login">login</a>
-                 <a th:if="${data.isAuth()}" href="#" th:href="@{/logout}">Log Out</a>
-            </span>
-        </div>
-    </nav>-->
 </div>
 </body>
 </html>
