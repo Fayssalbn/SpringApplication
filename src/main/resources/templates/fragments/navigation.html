@@ -1,6 +1,21 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <body>
 <div id="navigation" th:fragment="nav">
+
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 text-uppercase" href="#" th:href="@{/}"  th:utext="${data.getAuth().getName()}" >name</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a  class="nav-link" th:if="!${data.isAuth()}" href="/login"><span data-feather="log-in"></span> login</a>
+                <a  class="nav-link" th:if="${data.isAuth()}" href="#" th:href="@{/logout}"><span data-feather="log-out"></span>  Log Out</a>
+            </li>
+        </ul>
+    </nav>
+
+   <!--
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark   navbar-expand-lg     shadow-sm fixed-top">
 
         <a class="navbar-brand mb-0  text-white font-weight-bold text- text-uppercase" th:utext="${data.getAuth().getName()}">..!..</a>
@@ -38,7 +53,7 @@
                  <a th:if="${data.isAuth()}" href="#" th:href="@{/logout}">Log Out</a>
             </span>
         </div>
-    </nav>
+    </nav>-->
 </div>
 </body>
 </html>
