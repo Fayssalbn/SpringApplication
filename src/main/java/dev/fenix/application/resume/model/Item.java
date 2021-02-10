@@ -13,7 +13,7 @@ import java.util.Set;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     private String heading;
     private String section;
     private Date dateStart;
@@ -39,7 +39,107 @@ public class Item {
     @NotFound(action = NotFoundAction.IGNORE)
     private Technologie resume;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public String getHeading() {
+        return heading;
+    }
 
+    public void setHeading(String heading) {
+        this.heading = heading;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public Date getDateStart() {
+        return dateStart;
+    }
+
+    public void setDateStart(Date dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    public Date getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getFooting() {
+        return footing;
+    }
+
+    public void setFooting(String footing) {
+        this.footing = footing;
+    }
+
+    public Icon getIcon() {
+        return icon;
+    }
+
+    public void setIcon(Icon icon) {
+        this.icon = icon;
+    }
+
+    public Boolean getHasDuration() {
+        return hasDuration;
+    }
+
+    public void setHasDuration(Boolean hasDuration) {
+        this.hasDuration = hasDuration;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Set<Technologie> getTechnologies() {
+        return technologies;
+    }
+
+    public void setTechnologies(Set<Technologie> technologies) {
+        this.technologies = technologies;
+    }
+
+    public Technologie getResume() {
+        return resume;
+    }
+
+    public void setResume(Technologie resume) {
+        this.resume = resume;
+    }
 }
