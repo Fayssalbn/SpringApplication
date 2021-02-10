@@ -4,6 +4,10 @@ import dev.fenix.application.resume.model.Icon;
 import dev.fenix.application.resume.repository.IconRepository;
 import dev.fenix.application.template.TemplateData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,18 +19,19 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/resume/icon")
-public class IconController {
+public class IconController  {
 
 
     @Autowired
     private IconRepository iconRepository;
 
     @GetMapping("/index")
-    public String showIconList(Model model) {
-
+    public String showIconList(@PageableDefault(size = 50) Pageable pageable, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
-        model.addAttribute("icons", iconRepository.findAll());
+        Page<Icon> page = iconRepository.findAll(pageable);
+        model.addAttribute("page", page);
+        //model.addAttribute("icons", iconRepository.findAll());
         return "resume/icon/index";
     }
 
