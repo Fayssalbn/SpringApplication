@@ -28,6 +28,11 @@
                         <span data-feather="cpu"></span> Technologie
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize-url="/resume/item/index" href="#" th:href="@{/resume/item/index}">
+                        <span data-feather="list"></span> Items
+                    </a>
+                </li>
 
                 <li th:if="!${data.isAuth()}" class="nav-item">
                     <a class="nav-link" sec:authorize-url="/security/signup" href="#" th:href="@{/security/signup}">
