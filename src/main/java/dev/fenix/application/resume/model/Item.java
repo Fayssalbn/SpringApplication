@@ -20,10 +20,12 @@ public class Item {
     private Date dateEnd;
     private String description;
     private String footing;
+
     @ManyToOne( cascade = { CascadeType.ALL } )
     @JoinColumn(name = "icon_id")
     @NotFound(action = NotFoundAction.IGNORE)
     private Icon icon ;
+
     private Boolean hasDuration ;
     private Boolean active ;
     private String location ;
