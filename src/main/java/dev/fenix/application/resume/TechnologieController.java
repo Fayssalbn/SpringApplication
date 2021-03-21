@@ -1,8 +1,8 @@
 package dev.fenix.application.resume;
 
-import dev.fenix.application.services.FileUpload;
 import dev.fenix.application.resume.model.Technologie;
 import dev.fenix.application.resume.repository.TechnologieRepository;
+import dev.fenix.application.services.FileUpload;
 import dev.fenix.application.template.TemplateData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

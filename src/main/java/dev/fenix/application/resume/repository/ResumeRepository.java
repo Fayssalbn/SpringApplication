@@ -1,6 +1,5 @@
 package dev.fenix.application.resume.repository;
 
-import dev.fenix.application.resume.model.Icon;
 import dev.fenix.application.resume.model.Resume;
 import org.springframework.data.repository.PagingAndSortingRepository;
 

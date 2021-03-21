@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name = "users")
+@Table(name = "sc__users")
 public class User {
 
     @Id
@@ -29,7 +29,7 @@ public class User {
     private String userName;
 
    // @NotBlank(message = "userpassword is mandatory")
-    @Pattern(message="Minimum eight characters, at least one letter and one number", regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")
+   // @Pattern(message="Minimum eight characters, at least one letter and one number", regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")
     @Size(min = 6, max = 20, message = "message size must be between 6 and 20")
     @Transient
     private String userpassword;
@@ -57,7 +57,6 @@ public class User {
 
     @Column(name = "modify_date")
     private Date modifyDate;
-
 
 
 

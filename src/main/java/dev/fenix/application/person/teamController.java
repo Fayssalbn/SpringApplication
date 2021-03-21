@@ -1,7 +1,7 @@
-package dev.fenix.application.resume;
-
-import dev.fenix.application.resume.model.Icon;
-import dev.fenix.application.resume.repository.IconRepository;
+package dev.fenix.application.person;
+ 
+import dev.fenix.application.person.module.Team;
+import dev.fenix.application.person.repository.TeamRepository;
 import dev.fenix.application.template.TemplateData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,42 +18,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/resume/icon")
-public class IconController  {
+@RequestMapping("/team")
+public class teamController {
 
 
     @Autowired
-    private IconRepository iconRepository;
+    private TeamRepository teamRepository;
 
     @GetMapping("/index")
-    public String showIconList(@PageableDefault(size = 50) Pageable pageable, Model model) {
+    public String showTeamList(@PageableDefault(size = 50) Pageable pageable, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
-        Page<Icon> page = iconRepository.findAll(pageable);
+        Page<Team> page = teamRepository.findAll(pageable);
         model.addAttribute("page", page);
-        //model.addAttribute("icons", iconRepository.findAll());
-        return "resume/icon/index";
+        //model.addAttribute("teams", teamRepository.findAll());
+        return "team/index";
     }
 
     // add user
     @GetMapping("/add")
-    public String showAddForm(Icon icon, Model model) {
+    public String showAddForm(Team team, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
-        return "resume/icon/add-icon";
+        return "team/add-team";
     }
 
-    @PostMapping("/addicon")
-    public String addIcon(@Valid Icon icon, BindingResult result, Model model) {
+    @PostMapping("/addteam")
+    public String addTeam(@Valid Team team, BindingResult result, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
 
         if (result.hasErrors()) {
-            return "resume/icon/add-icon";
+            return "team/add-team";
         }
 
-        iconRepository.save(icon);
-        return "redirect:/resume/icon/index";
+        teamRepository.save(team);
+        return "redirect:team/index";
     }
 
 
@@ -62,33 +62,33 @@ public class IconController  {
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
-        Icon icon = iconRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid icon Id:" + id));
-        model.addAttribute("icon", icon);
-        return "resume/icon/update-icon";
+        Team team = teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid team Id:" + id));
+        model.addAttribute("team", team);
+        return "team/update-team";
     }
 
 
     @PostMapping("/update/{id}")
-    public String updateIcon(@PathVariable("id") Long id, @Valid Icon icon, BindingResult result, Model model) {
+    public String updateTeam(@PathVariable("id") Long id, @Valid Team team, BindingResult result, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
         if (result.hasErrors()) {
-            icon.setId(id);
+            team.setId(id);
 
-            return "resume/icon/update-icon";
+            return "team/update-team";
         }
 
-        iconRepository.save(icon);
-        return "redirect:/resume/icon/index";
+        teamRepository.save(team);
+        return "redirect:/team/index";
     }
 
 
     /// delete
     @GetMapping("/delete/{id}")
-    public String deleteIcon(@PathVariable("id") Long id, Model model) {
-        Icon icon = iconRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        iconRepository.delete(icon);
-        return "redirect:resume/icon/index";
+    public String deleteTeam(@PathVariable("id") Long id, Model model) {
+        Team team = teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        teamRepository.delete(team);
+        return "redirect:team/index";
     }
 
 

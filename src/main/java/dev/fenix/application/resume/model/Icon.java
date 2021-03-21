@@ -1,5 +1,4 @@
 package dev.fenix.application.resume.model;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 

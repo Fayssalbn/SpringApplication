@@ -49,10 +49,6 @@ public class UserController {
     public String addUser(@Valid User user, BindingResult result, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
-
-
-
-
         if (result.hasErrors()) {
             return "security/add-user";
         }
