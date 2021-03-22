@@ -1,6 +1,6 @@
 package dev.fenix.application.person;
  
-import dev.fenix.application.person.module.Team;
+import dev.fenix.application.business.module.Team;
 import dev.fenix.application.person.repository.TeamRepository;
 import dev.fenix.application.template.TemplateData;
 import org.springframework.beans.factory.annotation.Autowired;

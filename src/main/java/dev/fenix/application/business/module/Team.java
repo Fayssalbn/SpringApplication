@@ -1,5 +1,6 @@
-package dev.fenix.application.person.module;
+package dev.fenix.application.business.module;
 
+import dev.fenix.application.person.module.Person;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
@@ -8,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "pe__team")
+@Table(name = "bz__team")
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +23,7 @@ public class Team {
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-            name = "pe__team_person",
+            name = "bz__team_person",
             joinColumns = { @JoinColumn(name = "team_id") },
             inverseJoinColumns = { @JoinColumn(name = "person_id") }
     )

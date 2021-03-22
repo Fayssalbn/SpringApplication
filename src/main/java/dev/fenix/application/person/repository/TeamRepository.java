@@ -1,5 +1,5 @@
 package dev.fenix.application.person.repository;
-import dev.fenix.application.person.module.Team;
+import dev.fenix.application.business.module.Team;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface TeamRepository extends PagingAndSortingRepository<Team,Long> {

@@ -24,7 +24,7 @@ public class Application {
 
     @PostConstruct
 	public void initPerson(){
-		for (int i = 0; i < 3000; i++) {
+		for (int i = 0; i < 2; i++) {
 			Person fayssal = new Person();
 			fayssal.setFirstName(this.generateRandom("AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "));
 			fayssal.setLastName(this.generateRandom("AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "));

@@ -1,5 +1,7 @@
 package dev.fenix.application.person.module;
 
+import dev.fenix.application.business.module.Staff;
+import dev.fenix.application.business.module.Team;
 import dev.fenix.application.security.model.User;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
@@ -17,27 +19,21 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String firstName;
     private String lastName;
-
     @Column(name = "create_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
-
     @Column(name = "modify_date")
     private Date modifyDate;
-
-
     @ManyToMany(mappedBy = "people")
-    private Set<Team> Teams = new HashSet<>();
-
+    private Set<Team> teams = new HashSet<>();
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "user_id")
     @NotFound(action = NotFoundAction.IGNORE)
     private User user;
-
-
+    private Date birthDate;
+    private int version;
 
     @PrePersist
     protected void onCreate() {
@@ -48,7 +44,6 @@ public class Person {
     protected void onUpdate() {
         modifyDate = new Date();
     }
-
 
     public Long getId() {
         return id;
@@ -74,22 +69,6 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Set<Team> getTeams() {
-        return Teams;
-    }
-
-    public void setTeams(Set<Team> teams) {
-        Teams = teams;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Date getCreateDate() {
         return createDate;
     }
@@ -104,5 +83,23 @@ public class Person {
 
     public void setModifyDate(Date modifyDate) {
         this.modifyDate = modifyDate;
+    }
+
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
+    }
+
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

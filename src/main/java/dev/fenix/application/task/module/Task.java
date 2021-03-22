@@ -16,7 +16,7 @@ public class Task {
     private Long id;
     private String title;
     private String description;
-    private Date startDate;
+
 
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "priority_id", nullable = false, insertable = false, updatable = false)
@@ -49,6 +49,7 @@ public class Task {
     @Column(name = "icon", length = 30)
     private String icon;
     private Date completeDate;
+    private Date startDate;
     private Date endDate;
     @Column(name = "is_repeat", columnDefinition = "BOOLEAN")
     private Boolean repeat;
