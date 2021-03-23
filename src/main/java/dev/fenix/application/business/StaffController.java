@@ -1,8 +1,9 @@
 package dev.fenix.application.business;
- 
-import dev.fenix.application.business.module.Job;
 
-import dev.fenix.application.business.repository.JobRepository;
+
+import dev.fenix.application.business.module.Staff;
+
+import dev.fenix.application.business.repository.StaffRepository;
 import dev.fenix.application.template.TemplateData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,44 +20,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/business/job")
-public class JobController {
+@RequestMapping("business/staff")
+public class StaffController {
 
 
     @Autowired
-    private JobRepository jobRepository;
+    private StaffRepository staffRepository;
 
     @GetMapping("/index")
-    public String showJobList(@PageableDefault(size = 50) Pageable pageable, Model model) {
+    public String showStaffList(@PageableDefault(size = 50) Pageable pageable, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
-        Page<Job> page = jobRepository.findAll(pageable);
+        Page<Staff> page = staffRepository.findAll(pageable);
         model.addAttribute("page", page);
-        model.addAttribute("count", jobRepository.count());
+        model.addAttribute("count", staffRepository.count());
 
-        //model.addAttribute("jobs", jobRepository.findAll());
-        return "/business/job/index";
+        //model.addAttribute("staffs", staffRepository.findAll());
+        return "business/staff/index";
     }
 
     // add user
     @GetMapping("/add")
-    public String showAddForm(Job job, Model model) {
+    public String showAddForm(Staff staff, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
-        return "/business/job/add-job";
+        return "staff/add-staff";
     }
 
-    @PostMapping("/addjob")
-    public String addJob(@Valid Job job, BindingResult result, Model model) {
+    @PostMapping("/addstaff")
+    public String addStaff(@Valid Staff staff, BindingResult result, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
 
         if (result.hasErrors()) {
-            return "/business/job/add-job";
+            return "staff/add-staff";
         }
 
-        jobRepository.save(job);
-        return "redirect:/business/job/index";
+        staffRepository.save(staff);
+        return "redirect:staff/index";
     }
 
 
@@ -65,33 +66,33 @@ public class JobController {
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
-        Job job = jobRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid job Id:" + id));
-        model.addAttribute("job", job);
-        return "/business/job/update-job";
+        Staff staff = staffRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid staff Id:" + id));
+        model.addAttribute("staff", staff);
+        return "staff/update-staff";
     }
 
 
     @PostMapping("/update/{id}")
-    public String updateJob(@PathVariable("id") Long id, @Valid Job job, BindingResult result, Model model) {
+    public String updateStaff(@PathVariable("id") Long id, @Valid Staff staff, BindingResult result, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
         if (result.hasErrors()) {
-            job.setId(id);
+            staff.setId(id);
 
-            return "/business/job/update-job";
+            return "staff/update-staff";
         }
 
-        jobRepository.save(job);
-        return "redirect:/business/job/index";
+        staffRepository.save(staff);
+        return "redirect:/staff/index";
     }
 
 
     /// delete
     @GetMapping("/delete/{id}")
-    public String deleteJob(@PathVariable("id") Long id, Model model) {
-        Job job = jobRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        jobRepository.delete(job);
-        return "redirect:/business/job/index";
+    public String deleteStaff(@PathVariable("id") Long id, Model model) {
+        Staff staff = staffRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        staffRepository.delete(staff);
+        return "redirect:staff/index";
     }
 
 

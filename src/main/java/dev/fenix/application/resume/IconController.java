@@ -88,7 +88,7 @@ public class IconController  {
     public String deleteIcon(@PathVariable("id") Long id, Model model) {
         Icon icon = iconRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         iconRepository.delete(icon);
-        return "redirect:resume/icon/index";
+        return "redirect:/resume/icon/index";
     }
 
 

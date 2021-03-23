@@ -16,8 +16,6 @@ import java.util.Map;
 public class IndexController {
     @Value("${message}")
     private String message;
-
-
     @RequestMapping(value = { "/", "home" })
     public ModelAndView edit(@RequestParam(value = "id", required = false) Long id, Map<String, Object> model) {
         TemplateData data = new TemplateData();
