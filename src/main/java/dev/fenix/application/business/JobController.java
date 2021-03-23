@@ -1,7 +1,8 @@
-package dev.fenix.application.business.module;
+package dev.fenix.application.business;
  
-import dev.fenix.application.business.module.Team;
-import dev.fenix.application.person.repository.TeamRepository;
+import dev.fenix.application.business.module.Job;
+
+import dev.fenix.application.business.repository.JobRepository;
 import dev.fenix.application.template.TemplateData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,44 +19,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/team")
-public class teamController {
+@RequestMapping("/job")
+public class JobController {
 
 
     @Autowired
-    private TeamRepository teamRepository;
+    private JobRepository jobRepository;
 
     @GetMapping("/index")
-    public String showTeamList(@PageableDefault(size = 50) Pageable pageable, Model model) {
+    public String showJobList(@PageableDefault(size = 50) Pageable pageable, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
-        Page<Team> page = teamRepository.findAll(pageable);
+        Page<Job> page = jobRepository.findAll(pageable);
         model.addAttribute("page", page);
-        model.addAttribute("count", teamRepository.count());
+        model.addAttribute("count", jobRepository.count());
 
-        //model.addAttribute("teams", teamRepository.findAll());
-        return "business/team/index";
+        //model.addAttribute("jobs", jobRepository.findAll());
+        return "business/job/index";
     }
 
     // add user
     @GetMapping("/add")
-    public String showAddForm(Team team, Model model) {
+    public String showAddForm(Job job, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
-        return "team/add-team";
+        return "job/add-job";
     }
 
-    @PostMapping("/addteam")
-    public String addTeam(@Valid Team team, BindingResult result, Model model) {
+    @PostMapping("/addjob")
+    public String addJob(@Valid Job job, BindingResult result, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
 
         if (result.hasErrors()) {
-            return "team/add-team";
+            return "job/add-job";
         }
 
-        teamRepository.save(team);
-        return "redirect:team/index";
+        jobRepository.save(job);
+        return "redirect:job/index";
     }
 
 
@@ -64,33 +65,33 @@ public class teamController {
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
-        Team team = teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid team Id:" + id));
-        model.addAttribute("team", team);
-        return "team/update-team";
+        Job job = jobRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid job Id:" + id));
+        model.addAttribute("job", job);
+        return "job/update-job";
     }
 
 
     @PostMapping("/update/{id}")
-    public String updateTeam(@PathVariable("id") Long id, @Valid Team team, BindingResult result, Model model) {
+    public String updateJob(@PathVariable("id") Long id, @Valid Job job, BindingResult result, Model model) {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
         if (result.hasErrors()) {
-            team.setId(id);
+            job.setId(id);
 
-            return "team/update-team";
+            return "job/update-job";
         }
 
-        teamRepository.save(team);
-        return "redirect:/team/index";
+        jobRepository.save(job);
+        return "redirect:/job/index";
     }
 
 
     /// delete
     @GetMapping("/delete/{id}")
-    public String deleteTeam(@PathVariable("id") Long id, Model model) {
-        Team team = teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        teamRepository.delete(team);
-        return "redirect:team/index";
+    public String deleteJob(@PathVariable("id") Long id, Model model) {
+        Job job = jobRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        jobRepository.delete(job);
+        return "redirect:job/index";
     }
 
 
