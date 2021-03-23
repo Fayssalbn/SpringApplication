@@ -1,4 +1,4 @@
-package dev.fenix.application.person;
+package dev.fenix.application.business.module;
  
 import dev.fenix.application.business.module.Team;
 import dev.fenix.application.person.repository.TeamRepository;
@@ -31,8 +31,10 @@ public class teamController {
         model.addAttribute("data", data);
         Page<Team> page = teamRepository.findAll(pageable);
         model.addAttribute("page", page);
+        model.addAttribute("count", teamRepository.count());
+
         //model.addAttribute("teams", teamRepository.findAll());
-        return "team/index";
+        return "business/team/index";
     }
 
     // add user

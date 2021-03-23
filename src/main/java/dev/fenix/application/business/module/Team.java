@@ -21,7 +21,7 @@ public class Team {
     @NotFound(action = NotFoundAction.IGNORE)
     private Person leader;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.ALL } , fetch = FetchType.EAGER)
     @JoinTable(
             name = "bz__team_person",
             joinColumns = { @JoinColumn(name = "team_id") },
@@ -57,6 +57,11 @@ public class Team {
     public Set<Person> getPeople() {
         return people;
     }
+
+    public int size(){
+        return this.people.size();
+    }
+
 
     public void setPeople(Set<Person> people) {
         this.people = people;
