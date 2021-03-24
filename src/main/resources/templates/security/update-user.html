@@ -1,65 +1,63 @@
+
+
+
+
+
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: myheader">
-
 </head>
 <body>
 <div th:insert="fragments/navigation :: nav"></div>
-<div class="container-fluid shadow bg-white">
-    <div class="row">
-        <div class="col mt-5">
-            <form action="#"
-                  th:action="@{/security/update/{id}(id=${user.id})}"
-                  th:object="${user}"
-                  method="post">
-                <div class="form-group  col-sm-12 col-md-3">
-                    <label for="name">Name</label>
-                    <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="Name">
-                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-                </div>
-
-                <div class="form-group   col-sm-12 col-md-3">
-                    <label for="email">Email</label>
-                    <input class="form-control" type="text" th:field="*{email}" id="email" placeholder="Email">
-                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-                </div>
-                <div class="form-group  col-sm-12 col-md-3">
-                    <label for="userName">userName</label>
-                    <input class="form-control" type="text" th:field="*{userName}" id="userName" placeholder="userName">
-                    <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
-                </div>
-                <div class="form-group  col-sm-12 col-md-3">
-                    <label for="userpassword">password</label>
-                    <input class="form-control" type="password" th:field="*{userpassword}" id="userpassword"
-                           placeholder="password">
-                    <span th:if="${#fields.hasErrors('userpassword')}" th:errors="*{userpassword}"></span>
-                </div>
-                <div class="form-group  col-sm-12 col-md-3">
-                    <label for="roles">roles</label>
-                    <span id="roles" class="col-sm-12 col-md-3" th:each="role : ${roles}">
+<div class="row mt-5">
+    <div th:insert="fragments/sidebarmenu :: #sidebarMenu"></div>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Persons</h1>
+        </div>
+        <form action="#"
+              th:action="@{/security/update/{id}(id=${user.id})}"
+              th:object="${user}"
+              method="post">
+            <div class="form-group  col-sm-12 col-md-3">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="Name">
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            </div>
+            <div class="form-group   col-sm-12 col-md-3">
+                <label for="email">Email</label>
+                <input class="form-control" type="text" th:field="*{email}" id="email" placeholder="Email">
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </div>
+            <div class="form-group  col-sm-12 col-md-3">
+                <label for="userName">userName</label>
+                <input class="form-control" type="text" th:field="*{userName}" id="userName" placeholder="userName">
+                <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
+            </div>
+            <div class="form-group  col-sm-12 col-md-3">
+                <label for="userpassword">password</label>
+                <input class="form-control" type="password" th:field="*{userpassword}" id="userpassword"
+                       placeholder="password">
+                <span th:if="${#fields.hasErrors('userpassword')}" th:errors="*{userpassword}"></span>
+            </div>
+            <div class="form-group  col-sm-12 col-md-3">
+                <label for="roles">roles</label>
+                <span id="roles" class="col-sm-12 col-md-3" th:each="role : ${roles}">
                         <input type="checkbox" name="roles" th:text="${role}" th:value="${role}" th:field="*{roles}"/>
                             <span th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></span>
                     </span >
-                </div>
-                <div class="form-group  col-sm-12 col-md-3">
-                    <label for="active">Active</label>
-                    <input class="form-control" type="checkbox" th:field="*{active}" id="active" checked="true" >
+            </div>
+            <div class="form-group  col-sm-12 col-md-3">
+                <label for="active">Active</label>
+                <input class="form-control" type="checkbox" th:field="*{active}" id="active" checked="true" >
+                <span th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></span>
+            </div>
+            <input class="form-control" type="hidden" th:field="*{createDate}" id="createdate">
+            <span th:if="${#fields.hasErrors('createDate')}" th:errors="*{createDate}"></span>
 
-
-
-                    <span th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></span>
-                </div>
-                <input class="form-control" type="hidden" th:field="*{createDate}" id="createdate">
-
-
-
-                <span th:if="${#fields.hasErrors('createDate')}" th:errors="*{createDate}"></span>
-
-                <input  class="btn btn-primary" type="submit" value="Update User">
-            </form>
-
-        </div>
-    </div>
+            <input  class="btn btn-primary" type="submit" value="Update User">
+        </form>
+    </main>
 </div>
 <div th:insert="fragments/footer :: foot"></div>
 </body>

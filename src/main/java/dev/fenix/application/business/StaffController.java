@@ -2,7 +2,6 @@ package dev.fenix.application.business;
 
 
 import dev.fenix.application.business.module.Staff;
-
 import dev.fenix.application.business.repository.StaffRepository;
 import dev.fenix.application.template.TemplateData;
 import org.springframework.beans.factory.annotation.Autowired;

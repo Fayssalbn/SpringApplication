@@ -1,6 +1,5 @@
 package dev.fenix.application.person.module;
 
-import dev.fenix.application.business.module.Staff;
 import dev.fenix.application.business.module.Team;
 import dev.fenix.application.security.model.User;
 import org.hibernate.annotations.NotFound;

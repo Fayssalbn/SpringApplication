@@ -1,7 +1,6 @@
 package dev.fenix.application.business;
- 
-import dev.fenix.application.business.module.Job;
 
+import dev.fenix.application.business.module.Job;
 import dev.fenix.application.business.repository.JobRepository;
 import dev.fenix.application.template.TemplateData;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,12 +1,6 @@
 package dev.fenix.application.business.module;
 
-import dev.fenix.application.person.module.Person;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "bz__Job")

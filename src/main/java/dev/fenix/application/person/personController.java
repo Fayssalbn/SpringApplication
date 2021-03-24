@@ -2,8 +2,6 @@ package dev.fenix.application.person;
 
 import dev.fenix.application.person.module.Person;
 import dev.fenix.application.person.repository.PersonRepository;
-import dev.fenix.application.resume.model.Icon;
-import dev.fenix.application.resume.repository.IconRepository;
 import dev.fenix.application.template.TemplateData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
