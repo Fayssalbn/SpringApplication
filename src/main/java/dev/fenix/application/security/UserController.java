@@ -1,7 +1,9 @@
 package dev.fenix.application.security;
 
-import dev.fenix.application.security.model.Roles;
+import dev.fenix.application.security.model.Role;
+
 import dev.fenix.application.security.model.User;
+import dev.fenix.application.security.repository.RoleRepository;
 import dev.fenix.application.security.repository.UserRepository;
 import dev.fenix.application.template.TemplateData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
       @GetMapping("/index")
       public String showUserList(Model model) {
@@ -39,8 +43,8 @@ public class UserController {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
         List<String> roles = new ArrayList<>();
-        for (Roles role : Roles.values()) {
-            roles.add(String.valueOf(role));
+        for (Role role : roleRepository.findAll()) {
+            roles.add(String.valueOf(role.getRole()));
         }
         model.addAttribute("roles", roles);
         return "security/add-user";
@@ -50,6 +54,11 @@ public class UserController {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
         if (result.hasErrors()) {
+            List<String> roles = new ArrayList<>();
+            for (Role role : roleRepository.findAll()) {
+                roles.add(String.valueOf(role.getRole()));
+            }
+            model.addAttribute("roles", roles);
             return "security/add-user";
         }
         user.CryptPassword();
@@ -66,8 +75,8 @@ public class UserController {
         TemplateData data = new TemplateData();
         model.addAttribute("data", data);
         List<String> roles = new ArrayList<>();
-        for (Roles role : Roles.values()) {
-            roles.add(String.valueOf(role));
+        for (Role role : roleRepository.findAll()) {
+            roles.add(String.valueOf(role.getRole()));
         }
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         model.addAttribute("roles", roles);
@@ -80,8 +89,8 @@ public class UserController {
     public String updateUser( @PathVariable("id") int id ,@Valid User user, BindingResult result, Model model) {
         TemplateData data = new TemplateData();
         List<String> roles = new ArrayList<>();
-        for (Roles role : Roles.values()) {
-            roles.add(String.valueOf(role));
+        for (Role role : roleRepository.findAll()) {
+            roles.add(String.valueOf(role.getRole()));
         }
         model.addAttribute("roles", roles);
         model.addAttribute("data", data);

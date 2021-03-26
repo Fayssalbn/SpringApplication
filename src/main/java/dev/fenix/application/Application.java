@@ -3,6 +3,7 @@ package dev.fenix.application;
 
 import dev.fenix.application.person.module.Person;
 import dev.fenix.application.person.repository.PersonRepository;
+import dev.fenix.application.security.model.User;
 import dev.fenix.application.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -23,12 +24,18 @@ public class Application {
 
     @PostConstruct
 	public void initPerson(){
-		for (int i = 0; i < 2; i++) {
+
+	     User user = userRepository.getUserById(1);
+		user.getRoles().forEach(role -> System.out.printf(role.getRole()));
+
+
+
+		/*for (int i = 0; i < 2; i++) {
 			Person fayssal = new Person();
 			fayssal.setFirstName(this.generateRandom("AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "));
 			fayssal.setLastName(this.generateRandom("AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "));
 			personRepository.save(fayssal);
-		}
+		}*/
 	}
 
 	private static String generateRandom(String aToZ) {
